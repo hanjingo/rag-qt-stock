@@ -1,0 +1,9 @@
+{
+    "PluginId": "stock-v0.0.1",
+    "Version": "0.0.1",
+    "Name": "stock",
+    "Description": "this plugin provides a stock widget for the rag-qt framework",
+    "Author": "hehehunanchina@live.com",
+    "Organization": "rag-qt",
+    "Dependencies": []
+}
