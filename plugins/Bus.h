@@ -31,8 +31,9 @@ class Bus : public QObject
         QString timestamp;
     };
 
-    struct Model
+    struct ModelConfig
     {
+        // base info
         QString hash;
         QString name;
         QString publisher;
@@ -41,6 +42,16 @@ class Bus : public QObject
         QString capabilities;
         qint64  contextSize;
         qint32  cost;
+        QString apiKey;
+
+        // parameters
+        float   temperature;
+        float   topP;
+        float   topK;
+        float   reputationPenalty;
+        qint64  maxTokens;
+        QString stopWords;
+        QString prompt;
     };
 
     struct Skill
@@ -64,7 +75,7 @@ class Bus : public QObject
 
     void SignalLanguageSwitch(const QString &lang);
 
-    void SignalModelInfoUpdateNtf(const QVector<Bus::Model> &modelInfos);
+    void SignalModelInfoUpdateNtf(const QVector<Bus::ModelConfig> &modelInfos);
 
     void SignalNewSession(const QString &title,
                           const QString &content,
@@ -83,7 +94,8 @@ class Bus : public QObject
                      const QString &model);
     void SignalQueryResp(const int      errorCode,
                          const int64_t  sessionId,
-                         const QString &content);
+                         const QString &content,
+                         const bool     isFinished);
 
     void SignalGetMessageInfo(const int64_t msgId,
                               const int64_t sessionId,
